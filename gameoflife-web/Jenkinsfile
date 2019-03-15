@@ -11,10 +11,20 @@ pipeline {
                 sh 'mvn clean test'  
             }
         }
-        stage('Run') { 
+        stage('Package') { 
             steps {
                 sh 'mvn clean package'  
             }
-        }             
+        }
+        stage('Create Image') { 
+            steps {
+                sh 'docker build'  
+            }
+        }
+        stage('Push Image Image') { 
+            steps {
+                sh 'docker image push gameoflife'  
+            }
+        }                  
     }
 }
