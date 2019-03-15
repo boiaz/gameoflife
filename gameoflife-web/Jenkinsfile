@@ -25,6 +25,11 @@ pipeline {
             steps {
                 sh 'docker push boiaz/gameoflife:latest'  
             }
-        }                  
+        }
+        stage('Start Acceptance Environment') { 
+            steps {
+                sh 'ansible-playbook -vvvvv /etc/ansible/ec2-basic.yml'  
+            }
+        }                    
     }
 }
