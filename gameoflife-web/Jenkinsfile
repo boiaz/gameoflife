@@ -28,13 +28,18 @@ pipeline {
         }
         stage('Start Acceptance Environment') { 
             steps {
-                sh 'ansible-playbook -vvvvv /etc/ansible/ec2-basic.yml -o StrictHostKeyChecking=no'  
+                sh 'ansible-playbook -vvvvv /etc/ansible/ec2-basic.yml'  
             }
         } 
         stage('functionality test') { 
             steps {
                 sh 'java -jar /home/boiaz/Documents/goltest.jar'  
             }
-        }                   
+        }
+        stage('terminate acceptance area') { 
+            steps {
+                sh 'ansible-playbook /etc/ansible/ec2-terminate.yml'  
+            }
+        }                    
     }
 }
