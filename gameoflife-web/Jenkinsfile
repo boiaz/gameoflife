@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Start Acceptance Environment') { 
             steps {
-                sh 'ansible-playbook -vvvvv -o StrictHostKeyChecking=no /etc/ansible/ec2-basic.yml'  
+                sh 'ansible-playbook -vvv /etc/ansible/ec2-basic.yml'  
             }
         } 
         stage('functionality test') { 
