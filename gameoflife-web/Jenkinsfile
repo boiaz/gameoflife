@@ -29,6 +29,8 @@ pipeline {
         stage('Start Acceptance Environment') { 
             steps {
                 sh 'ansible-playbook -vvv /etc/ansible/ec2-basic.yml'  
+            }
+        }
         stage('assign static IP') {
             steps {
                 sh 'ansible-playbook -vvv /etc/ansible/ec2-staticip.yml'
