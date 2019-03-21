@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Package') { 
             steps {
-                sh 'mvn clean package'  
+                sh 'mvn -DskipTests clean package'  
             }
         }
         stage('Create Image') { 
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Acceptance Environment') { 
             steps {
-                sh 'ansible-playbook -vvv /etc/ansible/ec2-basic.yml'  
+                sh 'ansible-playbook /etc/ansible/ec2-basic.yml'  
             }
         }
         stage('push to production') { 
