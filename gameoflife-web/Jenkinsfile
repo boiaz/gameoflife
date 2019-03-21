@@ -36,6 +36,11 @@ pipeline {
                 sh 'java -jar /home/boiaz/Documents/goltest.jar'  
             }
         }
+        stage('Terminate Instance') {
+            steps {
+                sh 'ansible-playbook /etc/ansible/ec2-terminate.yml'
+            }
+        }
         stage('push to production') { 
             steps {
                 sh 'ansible-playbook /etc/ansible/ec2-production.yml'  
