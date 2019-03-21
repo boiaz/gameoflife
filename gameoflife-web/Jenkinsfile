@@ -31,11 +31,6 @@ pipeline {
                 sh 'ansible-playbook -vvv /etc/ansible/ec2-basic.yml'  
             }
         }
-        stage('assign static IP') {
-            steps {
-                sh 'ansible-playbook -vvv /etc/ansible/ec2-staticip.yml'
-            }
-        } 
         stage('functionality test') { 
             steps {
                 sh 'java -jar /home/boiaz/Documents/goltest.jar'  
