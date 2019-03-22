@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Load Test') {
             steps {
-                sh 'sh /home/boiaz/programs/apache-jmeter-5.1/bin/jmeter.sh -n -t /home/boiaz/programs/apache-jmeter-5.1/bin/golloadtest.jmx -l /home/boiaz/Documents/Challenges/Provisioning'
+                sh 'sh /home/boiaz/programs/apache-jmeter-5.1/bin/jmeter.sh -n -t /home/boiaz/programs/apache-jmeter-5.1/bin/golloadtest.jmx -l /home/boiaz/Documents/Challenges/Provisioning/log.jtl'
             }
         }
         stage('Terminate Instance') {
