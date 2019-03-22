@@ -1,17 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
-            steps {
-                sh 'mvn -B -DskipTests install' 
-            }
-        }
         stage('Unit Test') { 
             steps {
                 sh 'mvn clean test'  
             }
         }
-        stage('Package') { 
+        stage('Build') { 
             steps {
                 sh 'mvn -DskipTests clean package'  
             }
@@ -29,6 +24,11 @@ pipeline {
         stage('Acceptance Environment') { 
             steps {
                 sh 'ansible-playbook /etc/ansible/ec2-basic.yml'  
+            }
+        }
+        stage('terminate instance') {
+            steps {
+                sh 'ansible-playbook /etc/ansible/ec2-terminate.yml'
             }
         }
         stage('push to production') { 
