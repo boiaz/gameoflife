@@ -26,7 +26,12 @@ pipeline {
                 sh 'ansible-playbook /etc/ansible/ec2-basic.yml'  
             }
         }
-        stage('terminate instance') {
+        stage('Functionality Test') {
+            steps {
+                sh 'java -jar /home/boiaz/Documents/goltest.jar'
+            }
+        }
+        stage('Terminate Instance') {
             steps {
                 sh 'ansible-playbook /etc/ansible/ec2-terminate.yml'
             }
