@@ -31,6 +31,11 @@ pipeline {
                 sh 'java -jar /home/boiaz/Documents/goltest.jar'
             }
         }
+        stage('Load Test') {
+            steps {
+                sh 'sh /home/boiaz/programs/apache-jmeter-5.1/bin/jmeter.sh -n -t /home/boiaz/programs/apache-jmeter-5.1/bin/golloadtest.jmx -l /home/boiaz/Documents/Challenges/Provisioning'
+            }
+        }
         stage('Terminate Instance') {
             steps {
                 sh 'ansible-playbook /etc/ansible/ec2-terminate.yml'
